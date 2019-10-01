@@ -14,7 +14,8 @@ body {
     font-family: 'Josefin Slab', serif;
     letter-spacing: 0.2em;
     padding: 20px;
-    font-size: 32px;
+    padding-top: 45px;
+    font-size: 26px;
 }
 
 #container {
@@ -43,6 +44,7 @@ img {
     height: 150px;
     padding: 10px;
     margin: 30px;
+    margin-top: 0;
 }
 
 #message {
@@ -64,4 +66,5 @@ img {
     letter-spacing: 0.2em;
     margin-top: 30px;
     font-size: 30px;
+    font-family:'Amatic SC', cursive;
 }

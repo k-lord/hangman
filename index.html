@@ -17,7 +17,7 @@
 
 
 <!-- Create img element with id that we'll later update after different events -->
-<div id="container">
+<div id="container" class="rounded-circle">
     <div id="directions">TYPE A LETTER TO PLAY</div>
     <img id="hangmanlevel" src="assets/images/attemptsleft6.png">
     <div id="message">
@@ -47,7 +47,9 @@
 
 </div>
 <div id="alreadyguessed">
-        <span class="guessed"></span>
+        <span class="guessed">ALREADY GUESSED: 
+            <span id="userLetterGuess"></span>
+        </span>
         
 
 </div>
@@ -65,8 +67,9 @@ var computerWord = options[Math.floor(Math.random()*options.length)];
     console.log(computerWord);
 
 var attemptsLeft = 6;
+var wrong = 0;
 
-// onkeyup function and toLowerCase to var userGuess
+// FIRST TRY
 
 document.onkeyup = function () {
     var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
@@ -78,22 +81,115 @@ document.onkeyup = function () {
         console.log("Output: " + result);
         if (result !== null) {
             console.log("That's right! Let's keep playing!");
+            $("#directions").text("THAT'S RIGHT! NOW TRY AGAIN.");
+            $("#userLetterGuess").text(userGuess);
+
         }
         else {
             console.log("Let's try that again...");
             attemptsLeft--;
+            wrong++;
             console.log("Attempts left: " + attemptsLeft);
-            //getElementById #attemptnumber and change text to "attemptsLeft--"
-            //getElementBy Id #hangmanlevel and change <img src> to next level :(
+            $("#directions").text("THAT WASN'T RIGHT. TRY AGAIN.");
+            $("#attemptnumber").text(attemptsLeft);
+            $("#userLetterGuess").text(userGuess);
+        }
+
+        //TO CHANGE THE IMG SRC IF THE ANSWER IS WRONG
+
+        if (wrong === 0) {
+        $("#hangmanlevel").attr("src","assets/images/attemptsleft6.png");
+        }
+
+        if (wrong === 1) {
+        $("#hangmanlevel").attr("src","assets/images/attemptsleft5.png");
+        }
+
+        if (wrong === 2) {
+        $("#hangmanlevel").attr("src","assets/images/attemptsleft4.png");
+        }
+
+        if (wrong === 3) {
+        $("#hangmanlevel").attr("src","assets/images/attemptsleft3.png");
+        }
+
+        if (wrong === 4) {
+        $("#hangmanlevel").attr("src","assets/images/attemptsleft2.png");
+        }
+
+        if (wrong === 5) {
+        $("#hangmanlevel").attr("src","assets/images/attemptsleft1.png");
+        }
+
+        if (wrong === 6) {
+        $("#hangmanlevel").attr("src","assets/images/attemptsleft0.png");
+        $("#directions").text("YOU LOST!");
+        }
+
+    } matchString();    
+}
+
+//FOLLOWING TRIES
+
+document.onkeyup = function () {
+    var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+    console.log(userGuess);
+
+    function matchString() { 
+        var string = computerWord; 
+        var result = string.match(userGuess); 
+        console.log("Output: " + result);
+        if (result !== null) {
+            console.log("That's right! Let's keep playing!");
+            $("#directions").text("THAT'S RIGHT! NOW TRY AGAIN.");
+            $("#userLetterGuess").text(userGuess);
 
         }
-    } matchString(); 
+        else {
+            console.log("Let's try that again...");
+            attemptsLeft--;
+            wrong++;
+            console.log("Attempts left: " + attemptsLeft);
+            $("#directions").text("THAT WASN'T RIGHT. TRY AGAIN.");
+            $("#attemptnumber").text(attemptsLeft);
+            $("#userLetterGuess").append(userGuess);
+        }
 
-    //input /append text in .guessed with userGuess value above where console.log is currently
+        //TO CHANGE THE IMG SRC IF THE ANSWER IS WRONG
 
-  
-    
+        if (wrong === 0) {
+        $("#hangmanlevel").attr("src","assets/images/attemptsleft6.png");
+        }
+
+        if (wrong === 1) {
+        $("#hangmanlevel").attr("src","assets/images/attemptsleft5.png");
+        }
+
+        if (wrong === 2) {
+        $("#hangmanlevel").attr("src","assets/images/attemptsleft4.png");
+        }
+
+        if (wrong === 3) {
+        $("#hangmanlevel").attr("src","assets/images/attemptsleft3.png");
+        }
+
+        if (wrong === 4) {
+        $("#hangmanlevel").attr("src","assets/images/attemptsleft2.png");
+        }
+
+        if (wrong === 5) {
+        $("#hangmanlevel").attr("src","assets/images/attemptsleft1.png");
+        }
+
+        if (wrong === 6) {
+        $("#hangmanlevel").attr("src","assets/images/attemptsleft0.png");
+        $("#directions").text("YOU LOST!");
+        }
+
+    } matchString();    
 }
+
+
 
 
 
