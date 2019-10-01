@@ -11,21 +11,38 @@
 </head>
 <body>
 
-<h1>Hangman</h1><hr>
+<h1>HANGMAN</h1><hr>
 
 <!-- Create img element with id that we'll later update after different events -->
-<div>
+<div id="container">
     <img id="hangmanlevel" src="assets/images/attemptsleft6.png">
     <div id="message">
-        Attempts left: <span id="attemptnumber">6</span>
+        ATTEMPTS LEFT: <span id="attemptnumber">6</span>
     </div>
     <br>
-    <span id="letter1">_</span>
-    <span id="letter2">_</span>
-    <span id="letter3">_</span>
-    <span id="letter4">_</span>
-    <span id="letter5">_</span>
+    <span class="space" id="char-1">_</span>
+    <span class="space" id="char-2">_</span>
+    <span class="space" id="char-3">_</span>
+    <span class="space" id="char-4">_</span>
+    <span class="space" id="char-5">_</span>
 
+    <br><br>
+    
+    <form action="/action_page.php">
+        GUESS A LETTER:<br>
+        <input type="text" name="letter" value="">
+        <input type="submit" value="Submit"><br>
+        <br><br>
+        GUESS THE WORD:<br>
+        <input type="text" name="word" value="">
+        <input type="submit" value="Submit">
+      </form>
+
+</div>
+<div id="alphabet">
+        <span class="alpha">
+            a b c d e f g h i j k l m n o p q r s t u v w x y z</span>
+        
 
 </div>
 
