@@ -5,16 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Josefin+Slab:600|Monoton&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>Hangman</title>
 </head>
 <body>
 
-<h1>HANGMAN</h1><hr>
+<h1>HANGMAN</h1>
+
+
 
 <!-- Create img element with id that we'll later update after different events -->
 <div id="container">
+    <div id="directions">TYPE A LETTER TO PLAY</div>
     <img id="hangmanlevel" src="assets/images/attemptsleft6.png">
     <div id="message">
         ATTEMPTS LEFT: <span id="attemptnumber">6</span>
@@ -25,22 +29,25 @@
     <span class="space" id="char-3">_</span>
     <span class="space" id="char-4">_</span>
     <span class="space" id="char-5">_</span>
-
-    <br><br>
     
-    <form>
+    <!-- <form>
         GUESS A LETTER:<br>
         <input type="text" name="letter" value="">
         <input type="submit" value="Submit"><br>
-        <br><br>
+      </form> -->
+      
+      <!--  to potentially add to above form:
         GUESS THE WORD:<br>
         <input type="text" name="word" value="">
-        <input type="submit" value="Submit">
-      </form>
+        <input type="submit" value="Submit"> -->
+        <!-- if I get the above to work then:
+        if userWordGuess===computerWord
+        - alert "you win!"
+        - change #attempts div text to "you won! click here to play again / and add reset button and start over" -->
 
 </div>
-<div id="alphabet">
-        <span class="alpha"></span>
+<div id="alreadyguessed">
+        <span class="guessed"></span>
         
 
 </div>
@@ -50,22 +57,49 @@
 
 // Create array for possible word choices
 
+var options = ["quick","jumps","klutz","blaze","jewel","banjo","zebra","knock","mummy","puppy","graze","equal","queue","clock","kayak","hippy","waxes","quart","savvy","toxic"];
+
+// set up computerWord var with Math.random() from above array for random word to play
+
+var computerWord = options[Math.floor(Math.random()*options.length)];
+    console.log(computerWord);
+
+var attemptsLeft = 6;
+
+// onkeyup function and toLowerCase to var userGuess
+
+document.onkeyup = function () {
+    var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+    console.log(userGuess);
+
+    function matchString() { 
+        var string = computerWord; 
+        var result = string.match(userGuess); 
+        console.log("Output: " + result);
+        if (result !== null) {
+            console.log("That's right! Let's keep playing!");
+        }
+        else {
+            console.log("Let's try that again...");
+            attemptsLeft--;
+            console.log("Attempts left: " + attemptsLeft);
+            //getElementById #attemptnumber and change text to "attemptsLeft--"
+            //getElementBy Id #hangmanlevel and change <img src> to next level :(
+
+        }
+    } matchString(); 
+
+    //input /append text in .guessed with userGuess value above where console.log is currently
+
+  
+    
+}
 
 
 
 
-// set up computerWord var with Math.random() from above array for word to play
 
-
-
-
-
-/* first guess:
-if userWordGuess===computerWord
-- alert "you win!"
-- change #attempts to "you won! click here to play again / reset button and start over"
-
-if userLetterGuess == correct letter
+/*if userLetterGuess == correct letter
 - replace respective span with that letter
 -alert "that's right! guess again"
 
