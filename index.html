@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Hangman</title>
+</head>
+<body>
+
+<h1>Hangman</h1><hr>
+
+<!-- Create img element with id that we'll later update after different events -->
+<div>
+    <img id="hangmanlevel" src="assets/images/attemptsleft6.png">
+    <div id="message">
+        Attempts left: <span id="attemptnumber">6</span>
+    </div>
+    <br>
+    <span id="letter1">_</span>
+    <span id="letter2">_</span>
+    <span id="letter3">_</span>
+    <span id="letter4">_</span>
+    <span id="letter5">_</span>
+
+
+</div>
+
+
+<!-- Create div id=attempts for attempts left # (this div will also be the one to change when win or lose)-->
+
+
+
+<!-- Create div that holds spans for each letter guess -->
+
+
+
+<!-- Create input box for userLetterGuess -->
+
+
+
+<!-- Create input box for userWordGuess -->
+
+
+
+<!-- Create div with alphabet that will change with each guess -->
+
+
+
+
+
+<script type="text/javascript">
+
+
+// Create array for possible word choices
+
+
+
+// set up computerWord var with Math.random() from above array for word to play
+
+
+
+
+
+/* first guess:
+if userWordGuess===computerWord
+- alert "you win!"
+- change #attempts to "you won! click here to play again / reset button and start over"
+
+if userLetterGuess == correct letter
+- replace respective span with that letter
+-alert "that's right! guess again"
+
+else 
+img src changes
+change #attempts value to decrease -1
+
+repeat above 7x and then "you lose! / reset button and start again" */
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
