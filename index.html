@@ -23,12 +23,17 @@
     <div id="message">
         ATTEMPTS LEFT: <span id="attemptnumber">6</span>
     </div>
-    <br>
-    <span class="space" id="char-1">_</span>
-    <span class="space" id="char-2">_</span>
-    <span class="space" id="char-3">_</span>
-    <span class="space" id="char-4">_</span>
-    <span class="space" id="char-5">_</span>
+    <div id="computerWordSpot">
+        <span id="space1"> _ </span>
+        <span id="space2"> _ </span>
+        <span id="space3"> _ </span>
+        <span id="space4"> _ </span>
+        <span id="space5"> _ </span>
+        
+
+    </div>
+    
+    
     
     <!-- <form>
         GUESS A LETTER:<br>
@@ -66,25 +71,93 @@ var options = ["quick","jumps","klutz","blaze","jewel","banjo","zebra","knock","
 var computerWord = options[Math.floor(Math.random()*options.length)];
     console.log(computerWord);
 
+var char1 = computerWord.charAt(0);
+    console.log("char1 is:" + char1);
+    
+var char2 = computerWord.charAt(1);
+    console.log("char2 is:" +char2);
+    
+var char3 = computerWord.charAt(2);
+    console.log("char3 is:" + char3); 
+
+var char4 = computerWord.charAt(3);
+    console.log("char4 is:" +char4);
+   
+var char5 = computerWord.charAt(4);
+    console.log("char5 is:" + char5);
+
 var attemptsLeft = 6;
+
 var wrong = 0;
+
+var right = 0;
 
 // FIRST TRY
 
-document.onkeyup = function () {
+document.onkeyup = function (event) {
     var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-    console.log(userGuess);
+    console.log("userGuess: " + userGuess);
+
+    
 
     function matchString() { 
+        console.log("matchString called");
         var string = computerWord; 
         var result = string.match(userGuess); 
-        console.log("Output: " + result);
-        if (result !== null) {
-            console.log("That's right! Let's keep playing!");
-            $("#directions").text("THAT'S RIGHT! NOW TRY AGAIN.");
-            $("#userLetterGuess").text(userGuess);
+      
 
+
+        // console.log("second char1 ref:" + char1);
+        // console.log("Output: " + result);
+        // if (result !== null) {
+        //     console.log("That's right! Let's keep playing!");
+        //     $("#directions").text("THAT'S RIGHT! NOW TRY AGAIN.");
+        //     $("#userLetterGuess").text(userGuess);
+        // }
+            // TO FILL OUT THE CORRECT SPACES AS THE USER GUESSES CORRECTLY
+            
+        if (result !== null) {
+            if (userGuess === char1) {
+                $("#space1").text(userGuess);
+                $("#directions").text("THAT'S RIGHT! NOW TRY AGAIN.");
+                $("#userLetterGuess").text(userGuess);
+                right++;
+            } 
+
+            if (userGuess == char2) {
+                $("#space2").text(userGuess);
+                $("#directions").text("THAT'S RIGHT! NOW TRY AGAIN.");
+                $("#userLetterGuess").text(userGuess);
+                right++;
+            }
+
+            if (userGuess == char3) {
+                $("#space3").text(userGuess);
+                $("#directions").text("THAT'S RIGHT! NOW TRY AGAIN.");
+                $("#userLetterGuess").text(userGuess);
+                right++;
+            }
+
+            if (userGuess == char4) {
+                $("#space4").text(userGuess);
+                $("#directions").text("THAT'S RIGHT! NOW TRY AGAIN.");
+                $("#userLetterGuess").text(userGuess);
+                right++;
+            }
+
+            if (userGuess === char5) {
+                $("#space5").text(userGuess);
+                $("#userLetterGuess").text(userGuess);
+                $("#directions").text("THAT'S RIGHT! NOW TRY AGAIN.");
+                right++;
+            }
+
+            if (right === 5) {
+                $("#directions").text("YOU WIN!");
+
+            }
         }
+
         else {
             console.log("Let's try that again...");
             attemptsLeft--;
@@ -122,29 +195,70 @@ document.onkeyup = function () {
         }
 
         if (wrong === 6) {
-        $("#hangmanlevel").attr("src","assets/images/attemptsleft0.png");
-        $("#directions").text("YOU LOST!");
+            $("#hangmanlevel").attr("src","assets/images/attemptsleft0.png");
+            $("#directions").text("YOU LOST!");
         }
 
-    } matchString();    
+    }
+
+    matchString();     
 }
 
 //FOLLOWING TRIES
 
-document.onkeyup = function () {
+document.onkeyup = function (event) {
     var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-    console.log(userGuess);
+    console.log("userGuess: " + userGuess);
 
     function matchString() { 
+        console.log("matchString called");
         var string = computerWord; 
         var result = string.match(userGuess); 
-        console.log("Output: " + result);
+            
         if (result !== null) {
-            console.log("That's right! Let's keep playing!");
-            $("#directions").text("THAT'S RIGHT! NOW TRY AGAIN.");
-            $("#userLetterGuess").text(userGuess);
+            if (userGuess === char1) {
+                $("#space1").text(userGuess);
+                $("#directions").text("THAT'S RIGHT! NOW TRY AGAIN.");
+                $("#userLetterGuess").append(userGuess);
+                right++;
+                
+            } 
 
+            if (userGuess == char2) {
+                $("#space2").text(userGuess);
+                $("#directions").text("THAT'S RIGHT! NOW TRY AGAIN.");
+                $("#userLetterGuess").append(userGuess);
+                right++;
+            }
+
+            if (userGuess == char3) {
+                $("#space3").text(userGuess);
+                $("#directions").text("THAT'S RIGHT! NOW TRY AGAIN.");
+                $("#userLetterGuess").append(userGuess);
+                right++;
+            }
+
+            if (userGuess == char4) {
+                $("#space4").text(userGuess);
+                $("#directions").text("THAT'S RIGHT! NOW TRY AGAIN.");
+                $("#userLetterGuess").append(userGuess);
+                right++;
+            }
+
+            if (userGuess === char5) {
+                $("#space5").text(userGuess);
+                $("#userLetterGuess").text(userGuess);
+                $("#userLetterGuess").append(userGuess);
+                right++;
+            }
+
+            if (right === 5) {
+                $("#directions").text("YOU WIN!");
+                $("#hangmanlevel").attr("src","assets/images/attemptsleft6.png");
+
+            }
         }
+
         else {
             console.log("Let's try that again...");
             attemptsLeft--;
@@ -182,28 +296,38 @@ document.onkeyup = function () {
         }
 
         if (wrong === 6) {
-        $("#hangmanlevel").attr("src","assets/images/attemptsleft0.png");
-        $("#directions").text("YOU LOST!");
+            $("#hangmanlevel").attr("src","assets/images/attemptsleft0.png");
+            $("#directions").text("YOU LOST!");
+            $("#space1").text(char1);
+            $("#space2").text(char2);
+            $("#space3").text(char3);
+            $("#space4").text(char4);
+            $("#space5").text(char5);
+
         }
 
-    } matchString();    
+    }
+
+    matchString();     
 }
 
 
 
+// if win or lose change already guessed div's contents to a "#reset" button
 
+//12. Create an "on-click" event attached to the "#reset" button id.
 
+//$("#clear").on("click", function() {
+   //   sort through random words and have a new computerWord
+   //   $("#userLetterGuess").empty();
+   //   $("#hangmanlevel").attr("src","assets/images/attemptsleft6.png");
+   //   $("#directions").text("TYPE A LETTER TO PLAY");
+   //   
+        
 
+       
+   //   });
 
-/*if userLetterGuess == correct letter
-- replace respective span with that letter
--alert "that's right! guess again"
-
-else 
-img src changes
-change #attempts value to decrease -1
-
-repeat above 7x and then "you lose! / reset button and start again" */
 
 
 

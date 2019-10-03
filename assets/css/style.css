@@ -55,6 +55,11 @@ img {
 
 }
 
+#computerWordSpot {
+    letter-spacing: 0.2em;
+    font-size: 30px;
+}
+
 .space {
     font-size: 30px;
     padding: 10px;
