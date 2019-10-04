@@ -35,13 +35,13 @@
 </div>
 
 <div id="alreadyguessed" class="row rounded">
-        <div class="col-10">
+        <div class="col-11">
         <span class="guessed">ALREADY GUESSED: 
             <span id="userLetterGuess"></span>
         </span>
         </div>
-        <div class="col-2">
-            <input class="btn" type="reset" value="RESET">
+        <div class="col-1">
+            <input class="btn" type="reset" value="&#8635;">
         </div>
 </div>
 
@@ -156,7 +156,6 @@ document.onkeyup = function (event) {
             console.log("user guess does not match any characters in string");
             attemptsLeft--;
             wrong++;
-            console.log("Attempts left: " + attemptsLeft);
             $("#directions").text("THAT WASN'T RIGHT. TRY AGAIN.");
             $("#attemptnumber").text(attemptsLeft);
             $("#userLetterGuess").text(userGuess);
@@ -237,7 +236,6 @@ document.onkeyup = function (event) {
             console.log("user guess does not match any characters in string");
             attemptsLeft--;
             wrong++;
-            console.log("Attempts left: " + attemptsLeft);
             $("#directions").text("THAT WASN'T RIGHT. TRY AGAIN.");
             $("#attemptnumber").text(attemptsLeft);
             $("#userLetterGuess").append(userGuess);
