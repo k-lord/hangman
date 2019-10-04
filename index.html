@@ -14,62 +14,49 @@
 
 <h1>HANGMAN</h1>
 
+<div id="container" class="rounded">
 
-
-<!-- Create img element with id that we'll later update after different events -->
-<div id="container" class="rounded-circle">
     <div id="directions">TYPE A LETTER TO PLAY</div>
+
     <img id="hangmanlevel" src="assets/images/attemptsleft6.png">
+
     <div id="message">
         ATTEMPTS LEFT: <span id="attemptnumber">6</span>
     </div>
+
     <div id="computerWordSpot">
         <span id="space1"> _ </span>
         <span id="space2"> _ </span>
         <span id="space3"> _ </span>
         <span id="space4"> _ </span>
         <span id="space5"> _ </span>
-        
-
     </div>
-    
-    
-    
-    <!-- <form>
-        GUESS A LETTER:<br>
-        <input type="text" name="letter" value="">
-        <input type="submit" value="Submit"><br>
-      </form> -->
-      
-      <!--  to potentially add to above form:
-        GUESS THE WORD:<br>
-        <input type="text" name="word" value="">
-        <input type="submit" value="Submit"> -->
-        <!-- if I get the above to work then:
-        if userWordGuess===computerWord
-        - alert "you win!"
-        - change #attempts div text to "you won! click here to play again / and add reset button and start over" -->
 
 </div>
-<div id="alreadyguessed">
+
+<div id="alreadyguessed" class="row rounded">
+        <div class="col-10">
         <span class="guessed">ALREADY GUESSED: 
             <span id="userLetterGuess"></span>
         </span>
-        
-
+        </div>
+        <div class="col-2">
+            <input class="btn" type="reset" value="RESET">
+        </div>
 </div>
 
 <script type="text/javascript">
 
+//Array for possible word options
 
-// Create array for possible word choices
+var options = ["quick","jumps","klutz","blaze","tough","banjo","zebra","orbit","build","album","graze","equal","great","clock","kayak","world","waxes","quart","moral","toxic"];
 
-var options = ["quick","jumps","klutz","blaze","jewel","banjo","zebra","knock","mummy","puppy","graze","equal","queue","clock","kayak","hippy","waxes","quart","savvy","toxic"];
-
-// set up computerWord var with Math.random() from above array for random word to play
+// Math.random to generate randomly chosen word from array above
 
 var computerWord = options[Math.floor(Math.random()*options.length)];
     console.log(computerWord);
+
+// define each character for the randomly defined word
 
 var char1 = computerWord.charAt(0);
     console.log("char1 is:" + char1);
@@ -86,80 +73,87 @@ var char4 = computerWord.charAt(3);
 var char5 = computerWord.charAt(4);
     console.log("char5 is:" + char5);
 
+// set var attemptsLeft and var wrong to track how many attempts are left until game is over
+
 var attemptsLeft = 6;
 
 var wrong = 0;
+
+// set var right to keep track of how many characters have guessed correctly 
 
 var right = 0;
 
 // FIRST TRY
 
+//user types a letter
+
 document.onkeyup = function (event) {
     var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-    console.log("userGuess: " + userGuess);
+    console.log("userGuess: " + userGuess);    
 
-    
+    // compare user's input with the characters in the computer generated string and see if they match
 
     function matchString() { 
-        console.log("matchString called");
         var string = computerWord; 
         var result = string.match(userGuess); 
-      
 
-
-        // console.log("second char1 ref:" + char1);
-        // console.log("Output: " + result);
-        // if (result !== null) {
-        //     console.log("That's right! Let's keep playing!");
-        //     $("#directions").text("THAT'S RIGHT! NOW TRY AGAIN.");
-        //     $("#userLetterGuess").text(userGuess);
-        // }
-            // TO FILL OUT THE CORRECT SPACES AS THE USER GUESSES CORRECTLY
+        // if user's input matches, change message to "that's right!", change text from " _ " to the correct letter in its corresponding span, add the guessed letter to alreadyGuessed div and decrease the number of attempts left.
             
         if (result !== null) {
+
+            console.log("userguess matches a character in the string.")
+
             if (userGuess === char1) {
+                right++;
+                attemptsLeft--;
                 $("#space1").text(userGuess);
                 $("#directions").text("THAT'S RIGHT! NOW TRY AGAIN.");
                 $("#userLetterGuess").text(userGuess);
-                right++;
+                $("#attemptnumber").text(attemptsLeft);
             } 
 
-            if (userGuess == char2) {
+            if (userGuess === char2) {
+                right++;
+                attemptsLeft--;
                 $("#space2").text(userGuess);
                 $("#directions").text("THAT'S RIGHT! NOW TRY AGAIN.");
                 $("#userLetterGuess").text(userGuess);
-                right++;
+                $("#attemptnumber").text(attemptsLeft);
             }
 
-            if (userGuess == char3) {
+            if (userGuess === char3) {
+                right++;
+                attemptsLeft--;
                 $("#space3").text(userGuess);
                 $("#directions").text("THAT'S RIGHT! NOW TRY AGAIN.");
                 $("#userLetterGuess").text(userGuess);
-                right++;
+                $("#attemptnumber").text(attemptsLeft);
             }
 
-            if (userGuess == char4) {
+            if (userGuess === char4) {
+                right++;
+                attemptsLeft--;
                 $("#space4").text(userGuess);
                 $("#directions").text("THAT'S RIGHT! NOW TRY AGAIN.");
                 $("#userLetterGuess").text(userGuess);
-                right++;
+                $("#attemptnumber").text(attemptsLeft);
             }
 
             if (userGuess === char5) {
+                right++;
+                attemptsLeft--;
                 $("#space5").text(userGuess);
                 $("#userLetterGuess").text(userGuess);
                 $("#directions").text("THAT'S RIGHT! NOW TRY AGAIN.");
-                right++;
+                $("#attemptnumber").text(attemptsLeft);
             }
 
-            if (right === 5) {
-                $("#directions").text("YOU WIN!");
-
-            }
         }
 
+        // if user input does not match any characters in the string, decrease the number of attempts left, change message to "try again" and add guessed letter to div alreadyGuessed.
+
         else {
-            console.log("Let's try that again...");
+            console.log("user guess does not match any characters in string");
             attemptsLeft--;
             wrong++;
             console.log("Attempts left: " + attemptsLeft);
@@ -168,36 +162,7 @@ document.onkeyup = function (event) {
             $("#userLetterGuess").text(userGuess);
         }
 
-        //TO CHANGE THE IMG SRC IF THE ANSWER IS WRONG
-
-        if (wrong === 0) {
-        $("#hangmanlevel").attr("src","assets/images/attemptsleft6.png");
-        }
-
-        if (wrong === 1) {
-        $("#hangmanlevel").attr("src","assets/images/attemptsleft5.png");
-        }
-
-        if (wrong === 2) {
-        $("#hangmanlevel").attr("src","assets/images/attemptsleft4.png");
-        }
-
-        if (wrong === 3) {
-        $("#hangmanlevel").attr("src","assets/images/attemptsleft3.png");
-        }
-
-        if (wrong === 4) {
-        $("#hangmanlevel").attr("src","assets/images/attemptsleft2.png");
-        }
-
-        if (wrong === 5) {
-        $("#hangmanlevel").attr("src","assets/images/attemptsleft1.png");
-        }
-
-        if (wrong === 6) {
-            $("#hangmanlevel").attr("src","assets/images/attemptsleft0.png");
-            $("#directions").text("YOU LOST!");
-        }
+        console.log("attempts left: " + attemptsLeft);
 
     }
 
@@ -211,56 +176,65 @@ document.onkeyup = function (event) {
     console.log("userGuess: " + userGuess);
 
     function matchString() { 
-        console.log("matchString called");
         var string = computerWord; 
         var result = string.match(userGuess); 
+
+        // if user's next inputs match, append the user guess letter to div alreadyGuessed
             
         if (result !== null) {
+
+            console.log("userGuess matches a character in the string.")
+
             if (userGuess === char1) {
+                right++;
+                attemptsLeft--;
                 $("#space1").text(userGuess);
                 $("#directions").text("THAT'S RIGHT! NOW TRY AGAIN.");
                 $("#userLetterGuess").append(userGuess);
-                right++;
-                
+                $("#attemptnumber").text(attemptsLeft);
             } 
 
-            if (userGuess == char2) {
+            if (userGuess === char2) {
+                right++;
+                attemptsLeft--;
                 $("#space2").text(userGuess);
                 $("#directions").text("THAT'S RIGHT! NOW TRY AGAIN.");
                 $("#userLetterGuess").append(userGuess);
-                right++;
+                $("#attemptnumber").text(attemptsLeft);
             }
 
-            if (userGuess == char3) {
+            if (userGuess === char3) {
+                right++;
+                attemptsLeft--;
                 $("#space3").text(userGuess);
                 $("#directions").text("THAT'S RIGHT! NOW TRY AGAIN.");
                 $("#userLetterGuess").append(userGuess);
-                right++;
+                $("#attemptnumber").text(attemptsLeft); 
             }
 
-            if (userGuess == char4) {
+            if (userGuess === char4) {
+                right++;
+                attemptsLeft--;
                 $("#space4").text(userGuess);
                 $("#directions").text("THAT'S RIGHT! NOW TRY AGAIN.");
                 $("#userLetterGuess").append(userGuess);
-                right++;
+                $("#attemptnumber").text(attemptsLeft);
             }
 
             if (userGuess === char5) {
-                $("#space5").text(userGuess);
-                $("#userLetterGuess").text(userGuess);
-                $("#userLetterGuess").append(userGuess);
                 right++;
+                attemptsLeft--;
+                $("#space5").text(userGuess);
+                $("#directions").text("THAT'S RIGHT! NOW TRY AGAIN.");
+                $("#userLetterGuess").append(userGuess);
+                $("#attemptnumber").text(attemptsLeft);
             }
-
-            if (right === 5) {
-                $("#directions").text("YOU WIN!");
-                $("#hangmanlevel").attr("src","assets/images/attemptsleft6.png");
-
-            }
+   
         }
 
+
         else {
-            console.log("Let's try that again...");
+            console.log("user guess does not match any characters in string");
             attemptsLeft--;
             wrong++;
             console.log("Attempts left: " + attemptsLeft);
@@ -269,26 +243,28 @@ document.onkeyup = function (event) {
             $("#userLetterGuess").append(userGuess);
         }
 
+        console.log("attempts left: " + attemptsLeft);
+
         //TO CHANGE THE IMG SRC IF THE ANSWER IS WRONG
 
         if (wrong === 0) {
-        $("#hangmanlevel").attr("src","assets/images/attemptsleft6.png");
+            $("#hangmanlevel").attr("src","assets/images/attemptsleft6.png");
         }
 
         if (wrong === 1) {
-        $("#hangmanlevel").attr("src","assets/images/attemptsleft5.png");
+            $("#hangmanlevel").attr("src","assets/images/attemptsleft5.png");
         }
 
         if (wrong === 2) {
-        $("#hangmanlevel").attr("src","assets/images/attemptsleft4.png");
+            $("#hangmanlevel").attr("src","assets/images/attemptsleft4.png");
         }
 
         if (wrong === 3) {
-        $("#hangmanlevel").attr("src","assets/images/attemptsleft3.png");
+            $("#hangmanlevel").attr("src","assets/images/attemptsleft3.png");
         }
 
         if (wrong === 4) {
-        $("#hangmanlevel").attr("src","assets/images/attemptsleft2.png");
+            $("#hangmanlevel").attr("src","assets/images/attemptsleft2.png");
         }
 
         if (wrong === 5) {
@@ -306,37 +282,34 @@ document.onkeyup = function (event) {
 
         }
 
+        if (attemptsLeft === 0) {
+            $("#hangmanlevel").attr("src","assets/images/attemptsleft0.png");
+            $("#directions").text("YOU LOST!");
+            $("#space1").text(char1);
+            $("#space2").text(char2);
+            $("#space3").text(char3);
+            $("#space4").text(char4);
+            $("#space5").text(char5);
+        }
+
+
+        //TO CHANGE IMG SRC IF USER WINS
+
+        if (right === 5) {
+            $("#directions").text("YOU WIN!");
+            $("#hangmanlevel").attr("src", "/assets/images/attemptsleft6.png");
+        }
+
     }
 
     matchString();     
 }
 
+//reset button refreshes page
 
-
-// if win or lose change already guessed div's contents to a "#reset" button
-
-//12. Create an "on-click" event attached to the "#reset" button id.
-
-//$("#clear").on("click", function() {
-   //   sort through random words and have a new computerWord
-   //   $("#userLetterGuess").empty();
-   //   $("#hangmanlevel").attr("src","assets/images/attemptsleft6.png");
-   //   $("#directions").text("TYPE A LETTER TO PLAY");
-   //   
-        
-
-       
-   //   });
-
-
-
-
-
-
-
-
-
-
+$(".btn").click(function(){
+            location.reload(true);
+        });
 
 
 </script>
