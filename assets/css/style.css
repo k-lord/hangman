@@ -6,7 +6,7 @@
 body {
     margin: 0 auto 0 auto;
     display:block;
-    background:url(/assets/images/paper.png) 0 0 repeat;
+    background-color: rgba(230, 232, 252, 0.89);
 }
 
 #directions {
