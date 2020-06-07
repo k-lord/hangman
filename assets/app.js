@@ -218,6 +218,9 @@ document.onkeyup = function (event) {
             $("#space3").text(char3);
             $("#space4").text(char4);
             $("#space5").text(char5);
+            document.onkeyup = function(event) {
+                location.reload(true);
+            }
         }
 
 
