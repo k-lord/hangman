@@ -7,7 +7,7 @@ A simple game of hangman built entirely with HTML, CSS, and javascript.
 ![Hangman Image 4](/assets/images/attemptsleft3.png)
 ![Hangman Image 5](/assets/images/attemptsleft2.png)
 ![Hangman Image 6](/assets/images/attemptsleft1.png)
-![Hangman Image 7](/assets/images/attemptsleft0.png)
+![Hangman Image 7](/assets/images/attemptsleft0.png =100x100)
 
 ## warning:
 All of these words are some of the highest scoring scrabble words, so trust me. It's tougher than you think.
